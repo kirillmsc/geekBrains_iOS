@@ -15,7 +15,7 @@ print("Now print b: ")
 var b = Double(readLine()!)
 print("Now print c: ")
 var c = Double(readLine()!)
-print("Now we find the roots of the equation \(a!)x^2+\(b!)x+\(c!)=0")
+print("Now we'll find the roots of the equation \(a!)x^2+\(b!)x+\(c!)=0")
 var d = b!*b!-4*a!*c!
 if d > 0{
     print("D=\(d). D>0, we have two roots.")
