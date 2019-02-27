@@ -24,7 +24,7 @@
 
 /* Begin PBXFileReference section */
 		7979D70E2225D85D00AD741A /* homeWork_L01 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = homeWork_L01; sourceTree = BUILT_PRODUCTS_DIR; };
-		7979D7112225D85D00AD741A /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		7979D7112225D85D00AD741A /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = main.swift; path = homeWork_L01/main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +41,7 @@
 		7979D7052225D85D00AD741A = {
 			isa = PBXGroup;
 			children = (
-				7979D7102225D85D00AD741A /* homeWork_L01 */,
+				7979D7112225D85D00AD741A /* main.swift */,
 				7979D70F2225D85D00AD741A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -52,14 +52,6 @@
 				7979D70E2225D85D00AD741A /* homeWork_L01 */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		7979D7102225D85D00AD741A /* homeWork_L01 */ = {
-			isa = PBXGroup;
-			children = (
-				7979D7112225D85D00AD741A /* main.swift */,
-			);
-			path = homeWork_L01;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

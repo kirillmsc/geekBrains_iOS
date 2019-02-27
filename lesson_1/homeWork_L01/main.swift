@@ -8,7 +8,7 @@
 
 import Foundation
 
-// equation
+// 1. Решить квадратное уравнение.
 print("Hello, print a: ")
 var a = Double(readLine()!)
 print("Now print b: ")
@@ -29,7 +29,7 @@ if d > 0{
 
 
 //===========================================================================
-// triangle
+// 2. Даны катеты прямоугольного треугольника. Найти площадь, периметр и гипотенузу треугольника.
 print("Enter the length of the first leg: ")
 let firstLeg = Double(readLine()!)
 print("Enter the length of the second leg: ")
@@ -41,7 +41,7 @@ print("Hypotenusa of the triangle is \(hypo)")
 
 
 //===========================================================================
-// bank
+// 3. * Пользователь вводит сумму вклада в банк и годовой процент. Найти сумму вклада через 5 лет.
 print("Enter deposit amount: ")
 var deposit = Double(readLine()!)
 print("Enter interest rate: ")
