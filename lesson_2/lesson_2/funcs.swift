@@ -24,9 +24,8 @@ func fibNum(number: Int) -> Array<Any>{
     var f1: Double = 0
     var f2: Double = 1
     var f3: Double
-    fibArray.append(f2)
     var i = 1
-    while i <= number-1{
+    while i <= number{
         f3 = f1 + f2
         fibArray.append(f3)
         f1 = f2
