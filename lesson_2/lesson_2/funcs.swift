@@ -20,10 +20,10 @@ func numDivide(number: Int) -> Bool {
 
 
 func fibNum(number: Int) -> Array<Any>{
-    var fibArray = [Double]()
-    var f1: Double = 0
-    var f2: Double = 1
-    var f3: Double
+    var fibArray = [Decimal]()
+    var f1: Decimal = 0
+    var f2: Decimal = 1
+    var f3: Decimal
     var i = 1
     while i <= number{
         f3 = f1 + f2
