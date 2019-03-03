@@ -34,8 +34,3 @@ func fibNum(number: Int) -> Array<Any>{
     }
     return fibArray
 }
-
-func simpl(numberF: Int, numberS: Int) -> Bool {
-    let res = (numberS % numberF == 0) ? true : false
-    return res
-}
