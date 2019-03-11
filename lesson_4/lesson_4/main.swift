@@ -38,7 +38,11 @@ enum VolumeStatus {
 }
 
 enum Gasoline {
-    case ai100, diesel
+    case ai100, diesel, ai92
+}
+
+enum Wheels {
+    case summer, winter, bigfoot, sport
 }
 
 class Car {
@@ -48,18 +52,20 @@ class Car {
     var enginePower : Int
     var gasoline : Gasoline
     var windowsState : WindowsState
+    var wheels : Wheels
     var info : String {
         get {
             return("Mark of the car is \(mark)\n Year of the car is \(year) \n Engine is \(engine) \n Engine power is \(enginePower) \n Windows are \(windowsState) \n")
         }
     }
-    init(mark: String, year: Int, engine: Engine, enginePower: Int, gasoline: Gasoline, windowsState: WindowsState) {
+    init(mark: String, year: Int, engine: Engine, enginePower: Int, gasoline: Gasoline, windowsState: WindowsState, wheels: Wheels) {
         self.mark = mark
         self.year = year
         self.engine = engine
         self.enginePower = enginePower
         self.gasoline = gasoline
         self.windowsState = windowsState
+        self.wheels = wheels
     }
     
     func changeWindowsState(){
@@ -69,18 +75,26 @@ class Car {
     func changeEngineState(){
         engine = engine == .start ? .off : .start
     }
+    
+    func changewheel(){
+        wheels = wheels == .winter ? .summer : .winter
+    }
 }
 
 class SuperCar: Car {
     var engineType : EngineType
     
-    init(mark: String, year: Int, engine: Engine, enginePower: Int, gasoline: Gasoline, windowsState: WindowsState, engineType: EngineType) {
+    init(mark: String, year: Int, engine: Engine, enginePower: Int, gasoline: Gasoline, windowsState: WindowsState, engineType: EngineType, wheels: Wheels) {
         self.engineType = engineType
-        super.init(mark: mark, year: year, engine: engine, enginePower: enginePower, gasoline: gasoline, windowsState: windowsState)
+        super.init(mark: mark, year: year, engine: engine, enginePower: enginePower, gasoline: gasoline, windowsState: windowsState, wheels: wheels)
     }
     
     func changeTurbo(){
         engineType = engineType == .turbo ? .atmo : .turbo
+    }
+    
+    override func changewheel() {
+        wheels = wheels == .sport ? .sport : .sport
     }
     
 }
@@ -88,9 +102,9 @@ class SuperCar: Car {
 class TrunkCar: Car {
     var volumeStatus : VolumeStatus
     
-    init(mark: String, year: Int, engine: Engine, enginePower: Int, gasoline: Gasoline, windowsState: WindowsState, trunkVolume : Int, volumeStatus : VolumeStatus) {
+    init(mark: String, year: Int, engine: Engine, enginePower: Int, gasoline: Gasoline, windowsState: WindowsState, trunkVolume : Int, volumeStatus : VolumeStatus, wheels: Wheels) {
         self.volumeStatus = volumeStatus
-        super.init(mark: mark, year: year, engine: engine, enginePower: enginePower, gasoline: gasoline, windowsState: windowsState)
+        super.init(mark: mark, year: year, engine: engine, enginePower: enginePower, gasoline: gasoline, windowsState: windowsState, wheels: wheels)
     }
     
     func upload(){
@@ -101,14 +115,31 @@ class TrunkCar: Car {
         volumeStatus = volumeStatus == .empty ? .full : .full
     }
     // написано две функции по причине того, что решил сделать осмысленную погрузку и разгрузку, а не просто изменение статуса заполнености кузова
+    
+    override func changewheel() {
+        wheels = wheels == .bigfoot ? .bigfoot : .bigfoot
+    }
+    // увы, не смог придумать что-либо, что можно изменить в зависимости от типа автомобиля, поэтому для грузовиков будут жирные колёса и добавлен новый наследник
 }
 
-var viper = SuperCar(mark: "Dodge", year: 1990, engine: .off, enginePower: 300, gasoline: .ai100, windowsState: .close, engineType: .atmo)
-var camaro = SuperCar(mark: "Shevrolet", year: 2000, engine: .off, enginePower: 350, gasoline: .ai100, windowsState: .close, engineType: .turbo)
-var man = TrunkCar(mark: "MAN", year: 2010, engine: .off, enginePower: 200, gasoline: .diesel, windowsState: .close, trunkVolume: 30, volumeStatus: .empty)
-var kamaz = TrunkCar(mark: "MAZ", year: 1990, engine: .off, enginePower: 100, gasoline: .diesel, windowsState: .open, trunkVolume: 20, volumeStatus: .empty)
+class CityCar: Car {
+}
 
+var viper = SuperCar(mark: "Dodge", year: 1990, engine: .off, enginePower: 300, gasoline: .ai100, windowsState: .close, engineType: .atmo, wheels: .summer)
+var camaro = SuperCar(mark: "Shevrolet", year: 2000, engine: .off, enginePower: 350, gasoline: .ai100, windowsState: .close, engineType: .turbo, wheels: .winter)
+var man = TrunkCar(mark: "MAN", year: 2010, engine: .off, enginePower: 200, gasoline: .diesel, windowsState: .close, trunkVolume: 30, volumeStatus: .empty, wheels: .summer)
+var kamaz = TrunkCar(mark: "MAZ", year: 1990, engine: .off, enginePower: 100, gasoline: .diesel, windowsState: .open, trunkVolume: 20, volumeStatus: .empty, wheels: .winter)
+var rio = CityCar(mark: "KIA", year: 2012, engine: .off, enginePower: 123, gasoline: .ai92, windowsState: .close, wheels: .summer)
 
+print(rio.wheels)
+rio.changewheel()
+print(rio.wheels)
+print(kamaz.wheels)
+kamaz.changewheel()
+print(kamaz.wheels)
+print(camaro.wheels)
+camaro.changewheel()
+print(camaro.wheels)
 print(viper.info)
 print(camaro.info)
 print(man.info)
