@@ -32,10 +32,6 @@ enum DoorsState {
     case close, open
 }
 
-enum Type {
-    case sport, truck
-}
-
 enum NO2 {
     case on, off
 }
@@ -76,10 +72,8 @@ class TruckCar: Car {
     var windows: WindowsState
     var engine: EngineState
     var doors: DoorsState
-    var type: Type = .truck
     var trunk: Trunk
-    init(mark: String, color: String, year: Int, windows: WindowsState, engine: EngineState, doors: DoorsState, type: Type, trunk: Trunk) {
-        self.type = type
+    init(mark: String, color: String, year: Int, windows: WindowsState, engine: EngineState, doors: DoorsState, trunk: Trunk) {
         self.trunk = trunk
         self.mark = mark
         self.color = color
@@ -101,10 +95,8 @@ class SportCar: Car {
     var windows: WindowsState
     var engine: EngineState
     var doors: DoorsState
-    var type: Type = .sport
     var azot: NO2
-    init(mark: String, color: String, year: Int, windows: WindowsState, engine: EngineState, doors: DoorsState, type: Type, azot: NO2) {
-        self.type = type
+    init(mark: String, color: String, year: Int, windows: WindowsState, engine: EngineState, doors: DoorsState, azot: NO2) {
         self.azot = azot
         self.mark = mark
         self.color = color
@@ -118,17 +110,17 @@ class SportCar: Car {
 //4. Для каждого класса написать расширение, имплементирующее протокол CustomStringConvertible.
 extension TruckCar: CustomStringConvertible {
     var description: String {
-        return "Mark is \(mark) \nColor is \(color) \nYear is \(year)"
+        return "Mark — \(mark) \nColor — \(color) \nYear — \(year)"
     }
 }
 extension SportCar: CustomStringConvertible {
     var description: String {
-        return "Mark is \(mark) \nColor is \(color) \nYear is \(year)"
+        return "Mark — \(mark) \nColor — \(color) \nYear — \(year)"
     }
 }
 //=================================================
-var kamaz = TruckCar(mark: "maz", color: "gray", year: 1990, windows: .close, engine: .off, doors: .close, type: .truck, trunk: .empty)
-var buble = SportCar(mark: "Toyota", color: "yellow", year: 2017, windows: .close, engine: .off, doors: .close, type: .sport, azot: .off)
+var kamaz = TruckCar(mark: "maz", color: "gray", year: 1990, windows: .close, engine: .off, doors: .close, trunk: .empty)
+var buble = SportCar(mark: "Toyota", color: "yellow", year: 2017, windows: .close, engine: .off, doors: .close, azot: .off)
 
 print("Текущее состояние")
 print("Windows are \(kamaz.windows)")
@@ -140,14 +132,15 @@ kamaz.changeDoorsState()
 kamaz.changeEngineState()
 kamaz.changeWindowsState()
 kamaz.changeTrunkState()
-print("")
+print("Состояние после изменений")
 print("Windows are \(kamaz.windows)")
 print("Doors are \(kamaz.doors)")
 print("Engine are \(kamaz.engine)")
 print("Trunk is \(kamaz.trunk)")
-
-print(kamaz)
-print(buble)
+print("")
+print("Truck is: \n\(kamaz)")
+print("")
+print("Sport is: \n\(buble)")
 /*
  1. Создать протокол «Car» и описать свойства, общие для автомобилей, а также метод действия.
  
