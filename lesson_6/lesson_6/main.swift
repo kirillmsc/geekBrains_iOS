@@ -68,10 +68,6 @@ struct Stack<T> {
         return elements.removeFirst()
     }
     
-//    mutating func sort() {
-//        return elements.sort()
-//    }
-    
     subscript (position: Int) -> T? {
         if position >= 0 && position < elements.count  {
             return elements[position]
