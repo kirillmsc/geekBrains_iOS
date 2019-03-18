@@ -57,7 +57,7 @@ extension Cheese: CustomStringConvertible{
     }
 }
 
-struct Stack<T> {
+struct Queue<T> {
     var elements: [T] = []
     
     mutating func push(_ element: T) {
@@ -67,6 +67,7 @@ struct Stack<T> {
     mutating func pop() -> T? {
         return elements.removeFirst()
     }
+
     
     subscript (position: Int) -> T? {
         if position >= 0 && position < elements.count  {
@@ -76,8 +77,8 @@ struct Stack<T> {
     }
 }
 
-var meatSupermarket = Stack<Meat>()
-var cheeseSupermarket = Stack<Cheese>()
+var meatSupermarket = Queue<Meat>()
+var cheeseSupermarket = Queue<Cheese>()
 
 meatSupermarket.push(Meat(meat: .pig, shelfLife: 10))
 meatSupermarket.push(Meat(meat: .cow, shelfLife: 12))
