@@ -82,8 +82,8 @@ class AviaTickets {
 }
 
 var trip1 = AviaTickets(departureCity: .voronezh, destinationCity: .moscow, price: 1000)
-var trip2 = AviaTickets(departureCity: .voronezh, destinationCity: .moscow, price: 1000)
-var trip3 = AviaTickets(departureCity: .voronezh, destinationCity: .omsk, price: 0)
+var trip2 = AviaTickets(departureCity: .toronto, destinationCity: .moscow, price: 1000)
+var trip3 = AviaTickets(departureCity: .voronezh, destinationCity: .omsk, price: 90)
 var trip4 = AviaTickets(departureCity: .omsk, destinationCity: .moscow, price: 10000)
 var trip5 = AviaTickets(departureCity: .moscow, destinationCity: .moscow, price: 90)
 
