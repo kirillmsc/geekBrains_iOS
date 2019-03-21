@@ -33,7 +33,13 @@ enum Reject: String, Error {
     }
 }
 
-print("Enter your credit")
+struct BoardingPass {
+    var cost: Int
+    var departure: City
+    var destination: City
+}
+
+//print("Enter your credit")
 //var credit = Int(readLine()!)!
 var credit = 100000
 var geolocation = ""
@@ -48,21 +54,25 @@ class AviaTickets {
         self.price = price
     }
     
-    func buyTickets() -> String{
+    func buyTickets() throws -> String{
         guard departureCity != City.omsk else {
-            return "You can't leave Omsk"
+            throw Reject.fromOmsk
+//            return "You can't leave Omsk"
         }
         
         guard price <= credit else {
-            return "Not enough money"
+            throw Reject.money
+//            return "Not enough money"
         }
         
         guard departureCity != destinationCity else {
-            return "You are at \(departureCity.raw()) yet"
+            throw Reject.youAreHere
+//            return "You are at \(departureCity.raw()) yet"
         }
         
         guard price != 0 else {
-            return "Now, it's impossible"
+            throw Reject.priceZero
+//            return "Now, it's impossible"
         }
         
         credit = credit - price
@@ -71,35 +81,32 @@ class AviaTickets {
     }
 }
 
+var trip1 = AviaTickets(departureCity: .voronezh, destinationCity: .moscow, price: 1000)
+var trip2 = AviaTickets(departureCity: .voronezh, destinationCity: .moscow, price: 1000)
+var trip3 = AviaTickets(departureCity: .voronezh, destinationCity: .omsk, price: 0)
+var trip4 = AviaTickets(departureCity: .omsk, destinationCity: .moscow, price: 10000)
+var trip5 = AviaTickets(departureCity: .moscow, destinationCity: .moscow, price: 90)
 
-var trip1 = AviaTickets(departureCity: .omsk, destinationCity: .moscow, price: 10000)
-var trip2 = AviaTickets(departureCity: .moscow, destinationCity: .toronto, price: 15000)
-var trip3 = AviaTickets(departureCity: .voronezh, destinationCity: .moscow, price: 1000)
-var trip4 = AviaTickets(departureCity: .moscow, destinationCity: .moscow, price: 90)
-var trip5 = AviaTickets(departureCity: .voronezh, destinationCity: .omsk, price: 0)
-
-print(trip1.buyTickets())
-print(trip2.buyTickets())
-print(trip3.buyTickets())
-print(trip4.buyTickets())
-print(trip5.buyTickets())
-
-//class Tickets{
-//    var plains = [
-//        "Moscow"
-//        "Voronez"
-//        "Omsk"
-//        "Toronto"
-//    ]
-//}
-//
-//do {
-//    let trip1 = try AviaTickets(departureCity: .omsk, destinationCity: .moscow, price: 10000)
-//    let trip2 = try AviaTickets(departureCity: .moscow, destinationCity: .toronto, price: 15000)
-//    let trip3 = try AviaTickets(departureCity: .voronezh, destinationCity: .moscow, price: 1000)
-//    let trip4 = try AviaTickets(departureCity: .moscow, destinationCity: .moscow, price: 90)
-//    let trip5 = try AviaTickets(departureCity: .voronezh, destinationCity: .omsk, price: 0)
-//} catch
+do {
+    try trip1.buyTickets()
+    print("From \(trip1.departureCity.raw()) to \(trip1.destinationCity.raw()) OK")
+    try trip2.buyTickets()
+    print("From \(trip2.departureCity.raw()) to \(trip2.destinationCity.raw()) OK")
+    try trip3.buyTickets()
+    print("From \(trip3.departureCity.raw()) to \(trip3.destinationCity.raw()) OK")
+    try trip4.buyTickets()
+    print("From \(trip4.departureCity.raw()) to \(trip4.destinationCity.raw()) OK")
+    try trip5.buyTickets()
+    print("From \(trip5.departureCity.raw()) to \(trip5.destinationCity.raw()) OK")
+} catch Reject.fromOmsk {
+    print(Reject.fromOmsk.raw())
+} catch Reject.money {
+    print(Reject.money.raw())
+} catch Reject.youAreHere {
+    print(Reject.youAreHere.raw())
+} catch Reject.priceZero {
+    print(Reject.priceZero.raw())
+}
 
 //
 //1. Придумать класс, методы которого могут создавать непоправимые ошибки. Реализовать их с помощью try/catch.
